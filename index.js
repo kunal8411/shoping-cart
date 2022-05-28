@@ -10,7 +10,7 @@ dotenv.config();
 
 //import routes
 const productRoute = require("./routes/product");
-
+const authRouter= require("./routes/auth")
 
 
 //cors config 
@@ -43,7 +43,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use("/product", productRoute);
-
+app.use("/auth", authRouter);
 
 app.listen(process.env.PORT || 5000, () => {
   console.log("server started on port 5000");
