@@ -3,17 +3,14 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const app = express();
 const bodyParser = require("body-parser")
-// const userRouter = require("./routes/user");
-// const setupWallet = require("./routes/setupWallet");
-// const transactAmount = require("./routes/transactAmount");
-// const transactionHistory = require("./routes/transactionHistory");
-// const walletHistory = require("./routes/walletHistory");
 const cors = require("cors");
-// const productRouter = require("./routes/product");
-// const cartRouter = require("./routes/cart");
-// const orderRouter = require("./routes/order");
 const CryptoJs = require("crypto-js");
 dotenv.config();
+
+
+//import routes
+const productRoute = require("./routes/product");
+
 
 
 //cors config 
@@ -45,10 +42,8 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
-// app.use("/setup", setupWallet);
-// app.use("/transact", transactAmount);
-// app.use("/transaction", transactionHistory);
-// app.use("/wallet", walletHistory);
+app.use("/product", productRoute);
+
 
 app.listen(process.env.PORT || 5000, () => {
   console.log("server started on port 5000");
