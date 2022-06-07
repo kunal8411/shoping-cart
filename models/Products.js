@@ -8,6 +8,7 @@ const ProductSchema = new mongoose.Schema(
     availableSizes: { type: Array, required: true },
     productDetails: { type: String, required: true },
     category: { type: String, required: true },
+    subCategory: { type: String, required: true },
   },
   { timestamps: true }
 );

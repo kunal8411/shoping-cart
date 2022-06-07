@@ -22,6 +22,19 @@ router.get("/find/:id", async (req, res) => {
   }
 });
 
+
+//get products by category
+router.get("/findByCategory/:type/:subType", async (req, res) => {
+  try {
+    console.log("req.params.type",req.params.type);
+    const productsByType = await Products.find({"category":req.params.type, "subCategory":req.params.subType});
+    console.log("productsByType",productsByType.length);
+    res.status(200).json(productsByType);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
 //post
 router.post("/", async (req, res) => {
   const newProduct = new Products(req.body);
