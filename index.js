@@ -10,6 +10,7 @@ dotenv.config();
 //import routes
 const productRoute = require("./routes/product");
 const authRouter = require("./routes/auth");
+const stripe = require("./routes/stripe");
 
 //cors config
 var whitelist = ["http://localhost:5000"];
@@ -39,7 +40,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use("/product", productRoute);
 app.use("/auth", authRouter);
-
+app.use("/api/checkout", stripe);
 app.listen(process.env.PORT || 5000, () => {
   console.log("server started on port 5000");
 });
