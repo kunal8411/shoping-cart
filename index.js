@@ -2,21 +2,17 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const app = express();
-const bodyParser = require("body-parser")
+const bodyParser = require("body-parser");
 const cors = require("cors");
 const CryptoJs = require("crypto-js");
 dotenv.config();
 
-
 //import routes
 const productRoute = require("./routes/product");
-const authRouter= require("./routes/auth")
+const authRouter = require("./routes/auth");
 
-
-//cors config 
-var whitelist=[
-  "http://localhost:5000"
-]
+//cors config
+var whitelist = ["http://localhost:5000"];
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => {
@@ -25,7 +21,6 @@ mongoose
   .catch((error) => {
     console.log("found this error->", error);
   });
-
 
 var corsOptions = {
   origin: function (origin, callback) {
@@ -40,7 +35,7 @@ var corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use("/product", productRoute);
 app.use("/auth", authRouter);
