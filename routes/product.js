@@ -3,7 +3,6 @@ const router = require("express").Router();
 
 //get All Products
 router.get("/", async (req, res) => {
-  console.log("i am called");
   try {
     const allProducts = await Products.find({});
     res.status(200).json(allProducts);
@@ -26,9 +25,7 @@ router.get("/find/:id", async (req, res) => {
 //get products by category
 router.get("/findByCategory/:type/:subType", async (req, res) => {
   try {
-    console.log("req.params.type",req.params.type);
     const productsByType = await Products.find({"category":req.params.type, "subCategory":req.params.subType});
-    console.log("productsByType",productsByType.length);
     res.status(200).json(productsByType);
   } catch (error) {
     res.status(500).json(error);
